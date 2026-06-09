@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio - Klaresta Ayu Pramesti</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- VARIABEL & RESET --- */
+        :root {
+            --primary: rgb(163, 0, 0);
+            --primary-dark: rgb(216, 29, 135);
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--white);
+        }
+
+        html { scroll-behavior: smooth; }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 1rem 5%;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--primary); }
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--dark); }
+
+        /* --- SECTION GENERAL --- */
+        section { padding: 100px 5% 80px 5%; }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p { color: var(--gray); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at top right, #dbeafe 0%, var(--white) 60%);
+            padding-top: 120px;
+        }
+
+        .hero-content { max-width: 800px; }
+        .hero-content h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; color: var(--dark); }
+        .hero-content h1 span { color: var(--primary); }
+        .hero-content p { font-size: 1.1rem; color: var(--gray); margin-bottom: 2rem; }
+        
+        .btn-container { display: flex; gap: 1rem; justify-content: center; }
+        .btn { padding: 0.8rem 2rem; border-radius: 30px; font-weight: 600; transition: 0.3s; cursor: pointer; }
+        .btn-primary { background: var(--primary); color: var(--white); }
+        .btn-primary:hover { background: var(--primary-dark); }
+        .btn-secondary { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+        .btn-secondary:hover { background: var(--light); }
+
+        /* --- SKILLS TABLE STYLE --- */
+        .skills-table {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background: var(--white);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .skills-table th, .skills-table td { padding: 1rem 1.5rem; text-align: left; }
+        .skills-table th { background: var(--primary); color: var(--white); font-weight: 600; }
+        .skills-table tr { border-bottom: 1px solid #e2e8f0; }
+        .skills-table tr:last-child { border: none; }
+
+        /* --- HOVER EFFECTS & FIXES --- */
+        .social-btn:hover {
+            background: rgba(255,255,255,0.2) !important;
+            transform: translateY(-3px);
+        }
+
+        /* --- TAB BUTTON ACTIVE STYLE --- */
+        .tab-btn.active {
+            background: var(--primary) !important;
+            color: var(--white) !important;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: fixed;
+                top: 70px; left: -100%;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                transition: 0.3s;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.05);
+                text-align: center;
+            }
+            .nav-links.active { left: 0; }
+            .hero-content h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">Portofolio</div>
+            <div class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#skills">Keahlian</a></li>
+                <li><a href="#videos">Video</a></li>
+                <li><a href="#gallery">Galeri</a></li>
+                <li><a href="#experience">Pengalaman</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+   <!-- Wrapper Utama Pengganti Hero -->
+    <div id="home" style="padding-top: 80px; background: var(--light); min-height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        
+        <!-- Kontainer Kartu Profil -->
+        <div style="width: 90%; max-width: 800px; background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin: 2rem 0; display: flex; flex-direction: column;">
+            
+            <!-- Banner Background Atas (Menggunakan Foto) -->
+            <!-- Catatan: Ganti 'banner-background.jpg' dengan nama file foto latar belakang yang Anda inginkan -->
+            <div style="height: 180px; background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('back.jpeg'); background-size: cover; background-position: center; position: relative;"></div>
+
+            <!-- Konten Kartu Utama -->
+            <div style="padding: 0 2.5rem 2.5rem 2.5rem; position: relative; text-align: center; display: flex; flex-direction: column; align-items: center;">
+                
+                <!-- Lingkaran Foto Menimpa Banner -->
+                <div style="width: 150px; height: 150px; border-radius: 50%; border: 5px solid var(--white); overflow: hidden; background: #e2e8f0; margin-top: -75px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); position: relative; z-index: 10;">
+                    <img src="Resta2.jpeg" alt="Klaresta Ayu Pramesti" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+
+                <!-- Nama & Tag -->
+                <div style="margin-top: 1.5rem; width: 100%;">
+                    <span style="display: inline-block; background: #dbeafe; color: var(--primary); padding: 0.3rem 1.2rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem;">Mahasiswi</span>
+                    <h1 style="font-size: 2.5rem; font-weight: 800; color: var(--dark); line-height: 1.2; margin-bottom: 1rem;">Klaresta Ayu Pramesti</h1>
+                    <div style="width: 60px; height: 4px; background: var(--primary); margin: 0 auto; border-radius: 2px;"></div>
+                </div>
+
+                <!-- Footer Kartu: Informasi Biodata Akademis -->
+                <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #e2e8f0; width: 100%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; text-align: left;">
+                    
+                    <!-- Sisi Kiri: Detail Akademik -->
+                    <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                        <div style="font-size: 0.95rem; color: var(--dark);"><strong style="color: var(--gray); display: inline-block; width: 100px;">NPM:</strong> 2513025039</div>
+                        <div style="font-size: 0.95rem; color: var(--dark);"><strong style="color: var(--gray); display: inline-block; width: 100px;">Prodi:</strong> Pendidikan Teknologi Informasi</div>
+                        <div style="font-size: 0.95rem; color: var(--dark);"><strong style="color: var(--gray); display: inline-block; width: 100px;">Angkatan:</strong> 2025</div>
+                        <div style="font-size: 0.95rem; color: var(--dark);"><strong style="color: var(--gray); display: inline-block; width: 100px;">Fakultas:</strong> FKIP</div>
+                    </div>
+                    
+                    <!-- Sisi Kanan: Lokasi / Universitas -->
+                    <div style="font-weight: 600; color: var(--primary); display: flex; align-items: center; gap: 8px; background: #eff6ff; padding: 0.6rem 1.2rem; border-radius: 12px; font-size: 0.95rem;">
+                        <i class="fas fa-university"></i> Universitas Lampung
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <section id="about" style="background: var(--light);">
+        <div class="section-title">
+            <h2>👋 Perkenalan Diri</h2>
+            <p>Siapa saya sebenarnya?</p>
+        </div>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center; background: var(--white); padding: 2.5rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+            <p style="font-size: 1.1rem; color: var(--dark); margin-bottom: 1.5rem;">
+                Halo! Saya <strong>Resta</strong>, saat ini saya sedang aktif kuliah di program studi Pendidikan Teknologi Informasi di Universitas Lampung. Saya memiliki ketertarikan di dunia IT, mulai dari pengembangan web, desain antarmuka (UI/UX), hingga pembuatan media pembelajaran digital yang interaktif.
+            </p>
+            <p style="color: var(--gray);">
+                Sebagai mahasiswa, saya senang mengeksplorasi tantangan baru, aktif dalam ruang kolaborasi organisasi, dan berdedikasi tinggi memanfaatkan teknologi guna menghadirkan solusi yang solutif dan edukatif bagi masalah masalah yang ada di kehidupan sehari-hari.
+            </p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="section-title">
+            <h2>🛠️ Keahlian saya</h2>
+            <p>Teknologi dan keahlian yang sering saya gunakan saat perkuliahan:</p>
+        </div>
+        <table class="skills-table">
+            <thead>
+                <tr>
+                    <th>Kategori</th>
+                    <th>Keahlian</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Programming & Web</strong></td>
+                    <td>HTML5, CSS3, JavaScript</td>
+                </tr>
+                <tr>
+                    <td><strong>Design & UI/UX</strong></td>
+                    <td>Figma, Canva</td>
+                </tr>
+                <tr>
+                    <td><strong>Lainnya</strong></td>
+                    <td>Media Pembelajaran Interaktif, Video Editing, Microsoft Office</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="videos" style="background: var(--light);">
+        <div class="section-title">
+            <h2>🎥 Tugas & Presentasi Kuliah</h2>
+            <p>Klik pada folder di bawah untuk melihat dan mengakses link video tugas saya:</p>
+        </div>
+
+        <div style="max-width: 800px; margin: 0 auto;">
+            
+            <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap;">
+                <button class="tab-btn active" onclick="openFolder(event, 'tugas1')" style="padding: 0.8rem 2rem; border-radius: 30px; font-weight: 600; font-family: 'Poppins', sans-serif; cursor: pointer; border: 2px solid var(--primary); background: transparent; color: var(--primary); transition: 0.3s;">
+                    <i class="fas fa-folder-open" style="margin-right: 8px;"></i> Tugas Pembuatan Soal
+                </button>
+                <button class="tab-btn" onclick="openFolder(event, 'tugas2')" style="padding: 0.8rem 2rem; border-radius: 30px; font-weight: 600; font-family: 'Poppins', sans-serif; cursor: pointer; border: 2px solid var(--primary); background: transparent; color: var(--primary); transition: 0.3s;">
+                    <i class="fas fa-folder" style="margin-right: 8px;"></i> Tugas Menjawab Quiz
+                </button>
+            </div>
+
+            <div id="tugas1" class="tab-content" style="display: block; background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <h3 style="font-size: 1.3rem; color: var(--primary); margin-bottom: 1.5rem; border-left: 4px solid var(--primary); padding-left: 10px;">📋 Tugas 1: Pembuatan Soal Grafika Komputer</h3>
+                <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0; flex-wrap: wrap; gap: 0.5rem;">
+                        <div>
+                            <h4 style="font-size: 1rem; margin-bottom: 0.2rem;">Pembuatan Soal 1</h4>
+                            <p style="color: var(--gray); font-size: 0.85rem;">Penjelasan jawaban materi Grafika Komputer (Soal 1)</p>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=63A4iTBZmSA" target="_blank" style="color: var(--primary); font-weight: 600; font-size: 0.9rem; text-decoration: underline; display: inline-flex; align-items: center; gap: 5px;">
+                            <i class="fab fa-youtube"></i> Buka Link Video <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+                        </a>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0; flex-wrap: wrap; gap: 0.5rem;">
+                        <div>
+                            <h4 style="font-size: 1rem; margin-bottom: 0.2rem;">Pembuatan Soal 2</h4>
+                            <p style="color: var(--gray); font-size: 0.85rem;">Penjelasan jawaban materi Grafika Komputer (Soal 2)</p>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=QQKozY9mXaY" target="_blank" style="color: var(--primary); font-weight: 600; font-size: 0.9rem; text-decoration: underline; display: inline-flex; align-items: center; gap: 5px;">
+                            <i class="fab fa-youtube"></i> Buka Link Video <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+                        </a>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0; flex-wrap: wrap; gap: 0.5rem;">
+                        <div>
+                            <h4 style="font-size: 1rem; margin-bottom: 0.2rem;">Pembuatan Soal 3</h4>
+                            <p style="color: var(--gray); font-size: 0.85rem;">Penjelasan jawaban materi Grafika Komputer (Soal 3)</p>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=yDJ_VvcKz98" target="_blank" style="color: var(--primary); font-weight: 600; font-size: 0.9rem; text-decoration: underline; display: inline-flex; align-items: center; gap: 5px;">
+                            <i class="fab fa-youtube"></i> Buka Link Video <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+                        </a>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0; flex-wrap: wrap; gap: 0.5rem;">
+                        <div>
+                            <h4 style="font-size: 1rem; margin-bottom: 0.2rem;">Pembuatan Soal 4</h4>
+                            <p style="color: var(--gray); font-size: 0.85rem;">Penjelasan jawaban materi Grafika Komputer (Soal 4)</p>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=zcyrepDTBTY" target="_blank" style="color: var(--primary); font-weight: 600; font-size: 0.9rem; text-decoration: underline; display: inline-flex; align-items: center; gap: 5px;">
+                            <i class="fab fa-youtube"></i> Buka Link Video <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+                        </a>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+                        <div>
+                            <h4 style="font-size: 1rem; margin-bottom: 0.2rem;">Pembuatan Soal 5</h4>
+                            <p style="color: var(--gray); font-size: 0.85rem;">Penjelasan jawaban materi Grafika Komputer (Soal 5)</p>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=q1o9X_PwCjk" target="_blank" style="color: var(--primary); font-weight: 600; font-size: 0.9rem; text-decoration: underline; display: inline-flex; align-items: center; gap: 5px;">
+                            <i class="fab fa-youtube"></i> Buka Link Video <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="tugas2" class="tab-content" style="display: none; background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <h3 style="font-size: 1.3rem; color: var(--primary); margin-bottom: 1.5rem; border-left: 4px solid var(--primary); padding-left: 10px;">📋 Tugas 2: Menjawab Quiz</h3>
+                <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0; flex-wrap: wrap; gap: 0.5rem;">
+                        <div>
+                            <h4 style="font-size: 1rem; margin-bottom: 0.2rem;">Tugas 2 - Video Bagian 1</h4>
+                            <p style="color: var(--gray); font-size: 0.85rem;">Penyelesaian pembahasan quiz interaktif (Part 1)</p>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=ItXRRjPCBP0" target="_blank" style="color: var(--primary); font-weight: 600; font-size: 0.9rem; text-decoration: underline; display: inline-flex; align-items: center; gap: 5px;">
+                            <i class="fab fa-youtube"></i> Buka Link Video <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+                        </a>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0; flex-wrap: wrap; gap: 0.5rem;">
+                        <div>
+                            <h4 style="font-size: 1rem; margin-bottom: 0.2rem;">Tugas 2 - Video Bagian 2</h4>
+                            <p style="color: var(--gray); font-size: 0.85rem;">Penyelesaian pembahasan quiz interaktif (Part 2)</p>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=szJ6U0nh2Bs" target="_blank" style="color: var(--primary); font-weight: 600; font-size: 0.9rem; text-decoration: underline; display: inline-flex; align-items: center; gap: 5px;">
+                            <i class="fab fa-youtube"></i> Buka Link Video <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+                        </a>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0; flex-wrap: wrap; gap: 0.5rem;">
+                        <div>
+                            <h4 style="font-size: 1rem; margin-bottom: 0.2rem;">Tugas 2 - Video Bagian 3</h4>
+                            <p style="color: var(--gray); font-size: 0.85rem;">Penyelesaian pembahasan quiz interaktif (Part 3)</p>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=EKTQ7LgTGIo" target="_blank" style="color: var(--primary); font-weight: 600; font-size: 0.9rem; text-decoration: underline; display: inline-flex; align-items: center; gap: 5px;">
+                            <i class="fab fa-youtube"></i> Buka Link Video <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+                        </a>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+                        <div>
+                            <h4 style="font-size: 1rem; margin-bottom: 0.2rem;">Tugas 2 - Video Bagian 4</h4>
+                            <p style="color: var(--gray); font-size: 0.85rem;">Penyelesaian pembahasan quiz interaktif (Part 4)</p>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=P3a9R9NyJx0" target="_blank" style="color: var(--primary); font-weight: 600; font-size: 0.9rem; text-decoration: underline; display: inline-flex; align-items: center; gap: 5px;">
+                            <i class="fab fa-youtube"></i> Buka Link Video <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- --- SECTION GALERI SAYA (FIXED LAYOUT) --- -->
+    <section id="gallery">
+        <div class="section-title">
+            <h2>🖼️ Galeri Saya</h2>
+            <p>Dokumentasi visual dan sekilas tentang preferensi saya:</p>
+        </div>
+        
+        <div style="max-width: 1100px; margin: 0 auto;">
+            <div style="display: flex; background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; flex-wrap: wrap;">
+                
+                <!-- SISI KIRI: Penyesuaian Layout Gambar Tetap dari Folder -->
+                <div style="flex: 1; min-width: 300px; min-height: 380px; background: #f1f5f9;">
+                    <img src="Resta.jpeg" alt="Foto Profil Resta" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+
+                <!-- SISI KANAN: Kotak Pengisi Sisa Ruang (Hobi & Detail) -->
+                <div style="flex: 1.5; min-width: 320px; padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, var(--white) 0%, #f8fafc 100%);">
+                    <h3 style="font-size: 1.5rem; color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-heart" style="color: #ef4444;"></i> Aktivitas &amp; Hobi
+                    </h3>
+                    
+                    <p style="color: var(--dark); font-size: 1rem; margin-bottom: 1.5rem; line-height: 1.7;">
+                        Di luar kesibukan perkuliahan, saya senang me time dengan cara beristirahat atau bermain game yang saya sukai. Saya juga senang menghabiskan waktu dengan membaca buku, mendengarkan musik, menonton film, dan berjalan-jalan keluar.
+                    </p>
+                    
+                    <!-- List Detail Hobi -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div style="display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <div style="background: #dbeafe; color: var(--primary); width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i class="fas fa-palette" style="font-size: 0.9rem;"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem;">Karakter Desain</h4>
+                                <p style="font-size: 0.85rem; color: var(--gray);">Membuat ilustrasi digital dan merancang konsep karakter visual.</p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: flex-start; gap: 0.8rem;">
+                            <div style="background: #dbeafe; color: var(--primary); width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i class="fas fa-gamepad" style="font-size: 0.9rem;"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem;">Eksplorasi UI/UX</h4>
+                                <p style="font-size: 0.85rem; color: var(--gray);">Mencoba berbagai interface menarik untuk aplikasi interaktif.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <section id="experience" style="background: var(--light);">
+        <div class="section-title">
+            <h2>💼 Pengalaman &amp; Organisasi</h2>
+            <p>Mahasiswa yang aktif dan punya pengalaman kepemimpinan:</p>
+        </div>
+        <div class="exp-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto;">
+            <div class="exp-card" style="background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-left: 4px solid var(--primary);">
+                <span class="exp-date" style="display: inline-block; background: #dbeafe; color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-bottom: 1rem;">Tahun 2025 - Sekarang</span>
+                <h3 style="font-size: 1.2rem; margin-bottom: 0.3rem;">FORMATIF</h3>
+                <h4 style="color: var(--gray); font-weight: 500; margin-bottom: 1rem; font-size: 0.95rem;">Anggota Divisi Medinfo</h4>
+                <p style="color: var(--gray); font-size: 0.9rem;">Berkontribusi dalam merancang sebuah Informasi Penting berupa poster digital dan publikasi digital untuk kegiatan kemahasiswaan.</p>
+            </div>
+            <div class="exp-card" style="background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-left: 4px solid var(--primary);">
+                <span class="exp-date" style="display: inline-block; background: #dbeafe; color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-bottom: 1rem;">Februari - Juni, 2026</span>
+                <h3 style="font-size: 1.2rem; margin-bottom: 0.3rem;">Panitia Event IMPRESSION x SPECTA 2026</h3>
+                <h4 style="color: var(--gray); font-weight: 500; margin-bottom: 1rem; font-size: 0.95rem;">CO SIE KESTARI</h4>
+                <p style="color: var(--gray); font-size: 0.9rem;">Ikut serta dalam membantu dan mengkoordinasi anggota dalam membuat surat menyurat yang dibutuhkan.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="background: var(--dark); color: var(--white); text-align: center; padding: 5rem 1rem;">
+        <div class="contact-container" style="max-width: 800px; margin: 0 auto;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">📬 Mari Berkolaborasi!</h2>
+            <p style="color: #94a3b8; margin-bottom: 2.5rem;">Tertarik untuk berdiskusi tentang proyek teknologi, media pembelajaran, atau sekadar bertukar ide? Silakan hubungi saya melalui:</p>
+            
+            <div class="social-links" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                <!-- Tombol Email -->
+                <a href="mailto:Klaresta02@gmail.com" class="social-btn" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.5rem; background: rgba(255,255,255,0.1); border-radius: 10px; color: var(--white); transition: 0.3s; font-weight: 500; text-decoration: none;">
+                    <i class="fas fa-envelope"></i> Email (Klaresta02@gmail.com)
+                </a>
+                
+                <!-- Tombol GitHub -->
+                <a href="https://github.com/klaresta02" target="_blank" class="social-btn" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.5rem; background: rgba(255,255,255,0.1); border-radius: 10px; color: var(--white); transition: 0.3s; font-weight: 500; text-decoration: none;">
+                    <i class="fab fa-github"></i> GitHub (klaresta02@gmail.com)
+                </a>
+                
+                <!-- Tombol Instagram -->
+                <a href="https://www.instagram.com/restalowe_19.02?igsh=aDY2d2U2N2dvcGtl" target="_blank" class="social-btn" style="display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.5rem; background: rgba(255,255,255,0.1); border-radius: 10px; color: var(--white); transition: 0.3s; font-weight: 500; text-decoration: none;">
+                    <i class="fab fa-instagram"></i> Instagram (restalowe_19.02)
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #020617; color: #64748b; text-align: center; padding: 1.5rem; font-size: 0.9rem;">
+        &copy; <span id="year"></span> Klaresta Ayu Pramesti. All rights reserved.
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+        const toggleIcon = menuToggle.querySelector('i');
+
+        // Toggle mobile menu navigation
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            if(navLinks.classList.contains('active')) {
+                toggleIcon.className = 'fas fa-times';
+            } else {
+                toggleIcon.className = 'fas fa-bars';
+            }
+        });
+
+        // Close mobile navigation menu on clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                toggleIcon.className = 'fas fa-bars';
+            });
+        });
+
+        // Set dynamic copyright year automatically
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Folder/Tab navigation switcher function
+        function openFolder(evt, folderName) {
+            const tabContent = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContent.length; i++) {
+                tabContent[i].style.display = "none";
+            }
+
+            const tabBtns = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabBtns.length; i++) {
+                tabBtns[i].classList.remove("active");
+                const icon = tabBtns[i].querySelector("i");
+                icon.className = "fas fa-folder";
+            }
+
+            document.getElementById(folderName).style.display = "block";
+            evt.currentTarget.classList.add("active");
+            evt.currentTarget.querySelector("i").className = "fas fa-folder-open";
+        }
+    </script>
+
+</body>
+</html>>
